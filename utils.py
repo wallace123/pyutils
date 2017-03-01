@@ -1,5 +1,6 @@
 """ Utility functions to be used in other Python scripts """
 import subprocess
+import random
 
 
 def simple_popen(cmdlist):
@@ -45,3 +46,10 @@ def create_loop_devices(loops):
 
     simple_popen(['rmmod', 'loop'])
     simple_popen(['modprobe', 'loop'])
+
+
+def rand_N_digits(n):
+    """ Generates a random integer with n digits """
+    range_start = 10**(n-1)
+    range_end = (10**n) - 1
+    return random.randint(range_start, range_end)
