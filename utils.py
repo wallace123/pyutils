@@ -53,3 +53,21 @@ def rand_n_digits(num_digits):
     range_start = 10**(num_digits-1)
     range_end = (10**num_digits) - 1
     return random.randint(range_start, range_end)
+
+
+def start_enable_service(service):
+    """ Starts and enables a service """
+    cmdlist = ['systemctl', 'start', service]
+    simple_popen(cmdlist)
+
+    cmdlist = ['systemctl', 'enable', service]
+    simple_popen(cmdlist)
+
+
+def stop_disable_service(service):
+    """ Stops and disables a service """
+    cmdlist = ['systemctl', 'stop', service]
+    simple_popen(cmdlist)
+
+    cmdlist = ['systemctl', 'disable', service]
+    simple_popen(cmdlist)
