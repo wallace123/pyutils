@@ -80,7 +80,14 @@ def set_masquerade():
 
 
 def set_firewall(port):
-    """ Given a ports, open them up on public interface """
+    """ Given a port, open it on public interface """
     port_str = '--add-port=%s/tcp' % str(port)
+    cmdlist = ['firewall-cmd', '--zone=public', port_str]
+    simple_popen(cmdlist)
+
+
+def remove_firewall(port):
+    """ Given a port, remove it on public interface """
+    port_str = '--remove-port=%s/tcp' % str(port)
     cmdlist = ['firewall-cmd', '--zone=public', port_str]
     simple_popen(cmdlist)
