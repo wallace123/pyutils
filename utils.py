@@ -71,3 +71,16 @@ def stop_disable_service(service):
 
     cmdlist = ['systemctl', 'disable', service]
     simple_popen(cmdlist)
+
+
+def set_masquerade():
+    """ Sets firewall to masquerade on public zone """
+    cmdlist = ['firewall-cmd', '--zone=public', '--add-masquerade']
+    simple_popen(cmdlist)
+
+
+def set_firewall(port):
+    """ Given a ports, open them up on public interface """
+    port_str = '--add-port=%s/tcp' % str(port)
+    cmdlist = ['firewall-cmd', '--zone=public', port_str]
+    simple_popen(cmdlist)
